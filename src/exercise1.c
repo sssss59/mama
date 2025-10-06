@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         s += arr[i];
     }
     float res = s/10;
-    printf("%.2f", res);
+    printf("%.3f", res);
 
     return 0;
 }
