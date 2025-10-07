@@ -13,9 +13,9 @@ void join_int_arrays(int *src1, size_t size_src1, int *src2, size_t size_src2, i
 void join_and_sort_int_arrays(int* src1, size_t size_src1, int* src2, size_t size_src2, int* dest) {
     dest[size_src1+size_src2];
     int array[size_src1+size_src2];
-    int i = 0;
-    int j = 0;
-    int c = 0;
+    size_t i = 0;
+    size_t j = 0;
+    size_t c = 0;
     while(i < size_src1 && j < size_src2){
         if(src1[i] <= src2[j]){
             array[c] = src1[i];
