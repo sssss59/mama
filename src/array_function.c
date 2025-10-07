@@ -27,7 +27,7 @@ void join_and_sort_int_arrays(int* src1, size_t size_src1, int* src2, size_t siz
         for(size_t i = 0; i < m; i++){
             array[size_src2 + i] = src1[size_src2 + i];
         }
-    }else if(size_src2 == size_src2){
+    }else if(size_src1 == size_src2){
         for(size_t i = 0; i < size_src2; i++){
             if(src1[i] < src2[i]){
                 array[i] = src1[i];
