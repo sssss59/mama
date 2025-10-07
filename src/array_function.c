@@ -13,16 +13,24 @@ void join_and_sort_int_arrays(int* src1, size_t size_src1, int* src2, size_t siz
     size_t i = 0, j = 0, k = 0;
     while (i < size_src1 && j < size_src2) {
         if (src1[i] <= src2[j]) {
-            dest[k++] = src1[i++];
+            dest[k] = src1[i];
+            k++;
+            i++;
         } else {
-            dest[k++] = src2[j++];
+            dest[k] = src2[j];
+            k++;
+            j++;
         }
     }
     while (i < size_src1) {
-        dest[k++] = src1[i++];
+        dest[k] = src1[i];
+        k++;
+        i++;
     }
     while (j < size_src2) {
-        dest[k++] = src2[j++];
+        dest[k] = src2[j];
+        k++;
+        j++;
     }
 }
 
