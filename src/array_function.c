@@ -1,63 +1,20 @@
 #include "../include/array_function.h"
 
 void join_int_arrays(int *src1, size_t size_src1, int *src2, size_t size_src2, int *dest) {
-    for(size_t i = 0; i < size_src1; i++){
-        dest[i] = src1[i];
-    }
-    for(size_t i = size_src1; i < size_src1+size_src2; i++){
-        dest[i] = src2[i-size_src1];
-    }
-}
-
-void join_and_sort_int_arrays(int* src1, size_t size_src1, int* src2, size_t size_src2, int* dest) {
-    int array[size_src1+size_src2];
-    if (size_src1 > size_src2){
-        for(size_t i = 0; i < size_src2; i++){
-            if(src1[i] < src2[i]){
-                array[i] = src1[i];
-            }else if(src1[i] == src2[i]){
-                array[i] = src1[i];
-                array[i+1] = src2[i];
-                i++;
-            }else if(src1[i] > src2[i]){
-                array[i] = src2[i];
-            }
-        }
-        size_t m = size_src1 - size_src2;
-        for(size_t i = 0; i < m; i++){
-            array[size_src2 + i] = src1[size_src2 + i];
-        }
-    }else if(size_src1 == size_src2){
-        for(size_t i = 0; i < size_src2; i++){
-            if(src1[i] < src2[i]){
-                array[i] = src1[i];
-            }else if(src1[i] == src2[i]){
-                array[i] = src1[i];
-                array[i+1] = src2[i];
-                i++;
-            }else if(src1[i] > src2[i]){
-                array[i] = src2[i];
-            }
-        }
-    }else if(size_src1 < size_src2){
-        for(size_t i = 0; i < size_src1; i++){
-            if(src2[i] < src1[i]){
-                array[i] = src2[i];
-            }else if(src1[i]==src2[i]){
-                array[i] = src1[i];
-                array[i+1] = src2[i];
-                i++;
-            }else if(src2[i]>src1[i]){
-                array[i] = src1[i];
-            }
-        }
-        size_t m = size_src2 - size_src1;
-        for(size_t i = 0; i < m; i++){
-            array[size_src1 + i] = src1[size_src1 + i];
+    size_t i = 0, j = 0, k = 0;
+    while (i < size_src1 && j < size_src2) {
+        if (src1[i] <= src2[j]) {
+            dest[k++] = src1[i++];
+        } else {
+            dest[k++] = src2[j++];
         }
     }
-    for(int i = 0; i < sizeof(array)/sizeof(int); i++){
-        dest[i] = array[i];
+    while (i < size_src1) {
+        dest[k++] = src1[i++];
+    }
+    
+    while (j < size_src2) {
+        dest[k++] = src2[j++];
     }
 }
 
