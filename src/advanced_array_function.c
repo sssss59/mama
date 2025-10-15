@@ -2,6 +2,9 @@
 
 int max_subarray_sum(int* nums, int size) {
     int max_sum = -2147483648;
+    if(size = 0){
+        return 0;
+    }
     for(int l = 0; l < size; l++){
         for(int r = l; r < size; r++){
             int temp_sum = 0;
