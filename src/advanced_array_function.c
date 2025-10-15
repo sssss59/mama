@@ -15,7 +15,7 @@ int max_subarray_sum(int* nums, int size) {
             }
         }
     }
-    printf("%d", max_sum);
+    return max_sum;
 }
 
 int length_of_lis(int* nums, int numsSize) {
