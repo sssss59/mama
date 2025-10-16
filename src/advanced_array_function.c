@@ -51,9 +51,24 @@ int* merge(int* intervals, int intervalsSize, int* returnSize) {
         return NULL;
     }
     
+    // bubble sort
+    for (int i = 0; i < intervalsSize - 1; i++) {
+        for (int j = 0; j < intervalsSize - i - 1; j++) {
+            if (intervals[j * 2] > intervals[(j + 1) * 2]) {
+
+                int tempStart = intervals[j * 2];
+                int tempEnd = intervals[j * 2 + 1];
+                
+                intervals[j * 2] = intervals[(j + 1) * 2];
+                intervals[j * 2 + 1] = intervals[(j + 1) * 2 + 1];
+                
+                intervals[(j + 1) * 2] = tempStart;
+                intervals[(j + 1) * 2 + 1] = tempEnd;
+            }
+        }
+    }
     
-    
-    // Создаем временный массив для результата
+    // временный массив для результатика
     int** tempResult = (int**)malloc(intervalsSize * sizeof(int*));
     for (int i = 0; i < intervalsSize; i++) {
         tempResult[i] = (int*)malloc(2 * sizeof(int));
@@ -63,29 +78,26 @@ int* merge(int* intervals, int intervalsSize, int* returnSize) {
     tempResult[resultSize][0] = intervals[0];
     tempResult[resultSize][1] = intervals[1];
     
-    // Объединяем интервалы
+    // алгоритм объединения
     for (int i = 1; i < intervalsSize; i++) {
         int currentStart = intervals[i * 2];
         int currentEnd = intervals[i * 2 + 1];
         int lastEnd = tempResult[resultSize][1];
-        
-        // Если текущий интервал пересекается с последним в результате
+       
         if (currentStart <= lastEnd) {
-            // Объединяем интервалы
             if (currentEnd > lastEnd) {
                 tempResult[resultSize][1] = currentEnd;
             }
         } else {
-            // Добавляем новый интервал в результат
             resultSize++;
             tempResult[resultSize][0] = currentStart;
             tempResult[resultSize][1] = currentEnd;
         }
     }
     
-    resultSize++; // Увеличиваем, т.к. индексация с 0
+    resultSize++;
     
-    // Преобразуем результат в одномерный массив
+    // Теперь все в один массив
     int* flatResult = (int*)malloc(resultSize * 2 * sizeof(int));
     for (int i = 0; i < resultSize; i++) {
         flatResult[i * 2] = tempResult[i][0];
