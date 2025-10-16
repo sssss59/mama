@@ -22,8 +22,20 @@ int max_subarray_sum(int* nums, int size) {
 }
 
 int length_of_lis(int* nums, int numsSize) {
-    printf("hz");
-    return 0;
+    int c = 1;
+    int temp_s = 1;
+    for(int l = 0; l < numsSize - 1; l++){
+        if(nums[l] < nums[l+1]){
+            temp_s+=1;
+        }
+        else{
+            temp_s=1;
+            if(temp_s > c){
+                c = temp_s;
+            }
+        }
+    }
+    return c;
 }
 
 int* merge(int* intervals, int intervalsSize, int* returnSize) {
