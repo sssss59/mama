@@ -34,7 +34,9 @@ int length_of_lis(int* nums, int numsSize) {
             }
             temp_c+=1;
         }else{
-            c = temp_c;
+            if(temp_c > c){
+                c = temp_c;
+            }
             temp_c = 1;
         }
     }
