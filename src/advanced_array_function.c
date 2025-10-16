@@ -51,22 +51,7 @@ int* merge(int* intervals, int intervalsSize, int* returnSize) {
         return NULL;
     }
     
-    // Сортируем интервалы по начальной точке (пузырьковая сортировка)
-    for (int i = 0; i < intervalsSize - 1; i++) {
-        for (int j = 0; j < intervalsSize - i - 1; j++) {
-            if (intervals[j * 2] > intervals[(j + 1) * 2]) {
-                // Меняем местами два интервала
-                int tempStart = intervals[j * 2];
-                int tempEnd = intervals[j * 2 + 1];
-                
-                intervals[j * 2] = intervals[(j + 1) * 2];
-                intervals[j * 2 + 1] = intervals[(j + 1) * 2 + 1];
-                
-                intervals[(j + 1) * 2] = tempStart;
-                intervals[(j + 1) * 2 + 1] = tempEnd;
-            }
-        }
-    }
+    
     
     // Создаем временный массив для результата
     int** tempResult = (int**)malloc(intervalsSize * sizeof(int*));
