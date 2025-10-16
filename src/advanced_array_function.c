@@ -29,6 +29,9 @@ int length_of_lis(int* nums, int numsSize) {
     int c = 1;
     for(int i = 0; i < numsSize; i++){
         if(nums[i]<nums[i+1]){
+            if(i == numsSize-1 && temp_c > c){
+                c = temp_c;
+            }
             temp_c+=1;
         }else{
             c = temp_c;
